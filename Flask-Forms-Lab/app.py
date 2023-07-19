@@ -11,11 +11,12 @@ username = "llo2ay"
 password = "123"
 facebook_friends=["malak","rut","nada", "talyah", "and more"]
 
+alowed_accounts={"llo2ay":"123","alona":"alona","sam":"999"}
 
 @app.route('/', methods=['GET', 'POST'])  # '/' for the default page
 def login():
 	if request.method=="POST":
-		if username==request.form.get("username") and password==request.form.get("password"):
+		if username in alowed_accounts and username==request.form.get("username").lower() and password==request.form.get("password"):
 			return redirect(url_for('home'))
 		else:
 			return render_template("login.html")
